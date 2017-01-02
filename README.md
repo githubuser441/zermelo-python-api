@@ -21,5 +21,5 @@ De volgende functies zijn beschikbaar:
 Gebruik tijdelijk voor informatie over de output van de functies de [officele zermelo restapi documentatie](https://zermelo.atlassian.net/wiki/display/DEV/Objects)
 
 ### TODO:
-- [ ] zet unix data die word opgehaalt van de api om in datetime objecten
+- [ ] zet timestamp data die word opgehaalt van de api om in datetime objecten
 - [ ] documentatie voor de output van functies
