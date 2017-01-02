@@ -1,13 +1,6 @@
 import os
 import json
 import requests
-from dateutil import parser
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    print("""
-    Als u gebruik wilt maken van de get_nieuws() functie
-     heeft u de BeautifulSoup libary nodig.""")
 
 class Zermelo(object):
 
@@ -53,9 +46,15 @@ class Zermelo(object):
         r = self.session.get(self.url+'v3/users/'+user, params=params)
         if r.status_code != 200:
             raise Exception("error "+str(r.status_code)+"\n"+r.text)
-        return json.loads(r.text)['response']['data']
+
+        if user="~me":
+            return json.loads(r.text)['response']['data'][0]
+        else:
+            return json.loads(r.text)['response']['data']
 
     def get_afspraken(self, start, end, user="~me", extra={}):
+        start = int(time.mktime(start.timetuple()))
+        end = int(time.mktime(end.timetuple()))
         params = {
             'user': user,
             'start': start,
@@ -74,8 +73,10 @@ class Zermelo(object):
             'access_token': self.access_token
         }
         if start:
+            start = int(time.mktime(start.timetuple()))
             params['start'] = start
         if end:
+            end = int(time.mktime(end.timetuple()))
             params['end'] = end
 
         r = self.session.get(self.url+'v2/announcements', params=params)
@@ -88,26 +89,3 @@ class Zermelo(object):
         if r.status_code != 200:
             raise Exception("error "+str(r.status_code)+"\n"+r.text)
         return r.text
-
-    """ misschien ooit
-    def get_nieuws(self):
-        r = self.session.get(self.url+'v3//status/news')
-        if r.status_code != 200:
-            raise Exception("error "+str(r.status_code)+"\n"+r.text)
-
-        soup = BeautifulSoup(r.text, 'html.parser')
-        for nieuws_artikel in soup.find_all('p'):
-            print(nieuws_artikel)
-            try:
-                datum = parser.parse(str(nieuws_artikel.i.text))
-            except ValueError:
-                datum = parser.parse(str(nieuws_artikel.i.text[:-7])) # quick and hackie
-            content = nieuws_artikel.text.replace()
-
-            print(datum)
-            print(content)
-            print("-------------------")
-
-
-        return True
-        """
