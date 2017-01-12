@@ -2,6 +2,7 @@
 Een simpele onofficele wrapper voor de zermelo api.
 
 Deze zermelo-python-api maakt gebruik van de requests libary dus deze moet worden geinstalleerd:
+
 `pip install requests`
 
 De volgende functies zijn beschikbaar:
