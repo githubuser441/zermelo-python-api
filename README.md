@@ -19,7 +19,7 @@ De volgende functies zijn beschikbaar:
   - (optioneel) *user* het id van de gebruiker waarvan u de data wilt
 - get_status() geeft een string met de huidige status van zermelo op uw school
 
-Gebruik tijdelijk voor informatie over de output van de functies de [officele zermelo restapi documentatie](https://zermelo.atlassian.net/wiki/display/DEV/Objects)
+Gebruik tijdelijk voor informatie over de output van de functies de [officele zermelo restapi documentatie](https://zermelo.atlassian.net/wiki/display/DEV/API+Entities)
 
 ### TODO:
 - [ ] zet timestamp data die word opgehaalt van de api om in datetime objecten
